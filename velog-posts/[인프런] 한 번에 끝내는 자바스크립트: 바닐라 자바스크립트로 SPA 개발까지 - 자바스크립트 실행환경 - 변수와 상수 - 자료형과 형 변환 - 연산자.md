@@ -1,0 +1,291 @@
+<h2 id="강의-목표">강의 목표</h2>
+<p>자바스크립트 기초 문법과 SPA 원리에 대한 이해
+이벤트 할당 및 DOM을 조작
+순수 자바스크립트로 라이브러리와 프레임워크 기능 구현</p>
+<h1 id="01-자바스크립트의-실행-환경">01. 자바스크립트의 실행 환경</h1>
+<ul>
+<li><p>자바스크립트는 자바스크립트 엔진이 있는 모든 곳에서 동작</p>
+</li>
+<li><p>자바스크립트 엔진</p>
+<ul>
+<li>자바스크립트를 실행하는 프로그램</li>
+<li>safari, firefox, chrome, edge, opera에 포함</li>
+<li>대표적인 엔진은 chrome의 v8</li>
+<li>자바스크립트 엔진은 웹 브라우저에 포함되어 있고, 이러한 웹 브라우저를 자바스크립트의 <strong>실행 환경</strong> 또는 <strong>런타임</strong>이라고 부름</li>
+</ul>
+</li>
+<li><p><code>/src</code></p>
+<ul>
+<li>소스 코드 보관 디렉토리</li>
+<li>주로 js, css 파일 보관</li>
+<li><code>index.html</code> 파일은 브라우저가 웹이나 애플리케이션을 로드할 때 가장 먼저 찾는 파일이기 때문에, <code>/src</code>보다는 프로젝트의 최상위(루트 디렉토리)에 위치시킴</li>
+</ul>
+</li>
+</ul>
+<h1 id="02-변수와-상수">02. 변수와 상수</h1>
+<h2 id="1-변수">1) 변수</h2>
+<ul>
+<li>이름을 가진 저장소</li>
+<li>변수를 사용하기 위해서는 변수의 이름을 지정해야함</li>
+<li>변수에 특정 값을 저장하는 것: &quot;대입&quot;, &quot;할당&quot;</li>
+<li><code>let 변수명 = 변수에 저장할 값</code><pre><code class="language-js">let name = '효빈'; // 변수 선언
+console.log(name); // '효빈'
+</code></pre>
+</li>
+</ul>
+<p>name = 'hyobin'; // 변수 값의 재할당
+console.log(name); // 'hyobin'</p>
+<pre><code>### (1) 변수명명 규칙
+1. 변수명에는 '$'기호와 '_'기호를 제외한 다른 기호는 사용할 수 없다.
+2. 변수명의 맨 앞에는 숫자를 사용할 수 없다.
+3. 예약어를 변수명으로 사용할 수 없다.
+![](https://velog.velcdn.com/images/heresue/post/67182676-e3cc-4e87-83f8-2793029a4af7/image.png)
+
+#### 변수명 직관적 작성 -&gt; 코드의 가독성 향상
+- 네이밍 컨벤션 (카멜 표기법 등)
+
+
+## 2) 상수
+- 변하지 않는 값을 저장하는 저장소
+- 값을 변경할 수 없음
+- `const 변수명 = 변수에 저장할 값`
+```js
+const name = '효빈';
+name = 'hyobin';
+
+console.log(name); // error</code></pre><h3 id="변경할-수-없는-상수를-사용하는-이유">변경할 수 없는 상수를 사용하는 이유</h3>
+<ul>
+<li>어떠한 값이 변경될 수 없다고 확신할 때 변수값이 변하는 것을 방지하기 위해서
+ex: 생일, 이름</li>
+<li>이메일, 홈페이지 주소와 같이 기억하기 어려운 값을 저장해두는 <strong>별칭</strong>으로도 사용</li>
+<li><blockquote>
+<p><strong>대문자로 표기</strong></p>
+</blockquote>
+<pre><code class="language-js">const EMAIL_ADDRESS = '123@gmail.com';</code></pre>
+</li>
+</ul>
+<h1 id="03-자료형과-형-변환">03. 자료형과 형 변환</h1>
+<h2 id="1-변수의-자료형">1) 변수의 자료형</h2>
+<ul>
+<li>변수에 할당되는 데이터의 종류. 변수의 타입이라고도 함</li>
+<li>자바스크립트 자료형<ul>
+<li>원시 타입: 프로그램이 실행되는 도중 단 하나의 값만 가지는 타입</li>
+<li>비원시 타입: 한 번에 여러 개의 값을 가지는 타입
+<img alt="" src="https://velog.velcdn.com/images/heresue/post/40ff6483-8614-4389-961a-0a6b7da9daa1/image.png" /></li>
+</ul>
+</li>
+</ul>
+<h3 id="1-typeof">(1) typeof</h3>
+<p>특정 변수의 자료형을 결과값으로 반환</p>
+<pre><code class="language-js">let num = 10;
+
+console.log(typeof num); // number</code></pre>
+<h3 id="2-원시타입-자료형">(2) 원시타입 자료형</h3>
+<h4 id="숫자형">숫자형</h4>
+<ul>
+<li>정수, 소수 등 모든 숫자</li>
+<li>Infinity, NaN(Not a Number)<ul>
+<li>부정확한 연산을 하는 경우 반환되는 값</li>
+<li>부정확한 연산을 하거나 0으로 나누더라도 에러가 발생하지 않고 위 값을 반환하기 때문에 '자바스크립트의 숫자 연산은 안전하다'라고도 표현함<pre><code class="language-js">let num = Infinity;
+console.log(typeof num); // number
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>let num = 100 / 0;
+console.log(num); // Infinity</p>
+<p>let number = NaN;
+console.log(typeof number); // number</p>
+<p>let number = 'javascript' / 10;
+console.log(number); // NaN</p>
+<pre><code>
+#### BigInt
+- 숫자형으로 표현하지 못하는 2^53-1 보다 크거나 -(2^53-1) 보다 작은 값
+- 숫자 끝에 n이라는 값을 붙이거나, BigInt() 함수 사용
+```js
+let bigNum1 = 99999999999999999n;
+let bigNum2 = BigInt(&quot;99999999999999999&quot;)
+
+console.log(typeof bigNum1); // bigint
+console.log(typeof bigNum2); // bigint</code></pre><h4 id="문자열-string">문자열 (string)</h4>
+<pre><code class="language-js">let name = 'hyobin';
+console.log(typeof name); // string
+
+// 템플릿 리터럴 (``)
+let intro = `제 이름은 ${name} 입니다.`
+console.log(intro); // 제 이름은 hyobin 입니다.</code></pre>
+<h4 id="boolean">boolean</h4>
+<ul>
+<li>true / false</li>
+</ul>
+<h4 id="null">null</h4>
+<ul>
+<li>자바스크립트에서의 Null은 오직 Null값만을 포함하는 하나의 자료형으로 사용
+(다른 언어에서는 Null을 하나의 값으로만 활용)</li>
+<li>존재하지 않거나, 알 수 없는 값<pre><code class="language-js">let num = null;
+</code></pre>
+</li>
+</ul>
+<p>console.log(typeof num); // object
+console.log(num === null); // true</p>
+<pre><code>- `object` 출력: 자바스크립트의 오래된 오류
+- **변수가 null형임을 확인하기 위해서는 `typeof` 대신 `===`으로 확인**
+
+#### undefined
+변수에 값이 할당되지 않은 상태일 때 자동으로 `undifined` 값으로 할당
+```js
+let num;
+
+console.log(typeof num); // undefined</code></pre><h3 id="3-형-변환">(3) 형 변환</h3>
+<ul>
+<li>C, Java에서는 변수를 선언할 때 변수의 자료형을 미리 작성<ul>
+<li>해당 자료형에 맞는 값만 할당할 수 있음</li>
+</ul>
+</li>
+<li>js에서는 변수 앞에 자료형을 작성하지 않음<ul>
+<li>다른 자료형을 할당할 수 있음</li>
+<li>하나의 변수에 다른 타입의 값을 저장해도 유연하게 타입이 변경되는 언어</li>
+<li><blockquote>
+<p><strong>&quot;동적 타입 언어&quot;</strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>특정 연산을 위해 자료형 변환되는 것: 형 변환<ul>
+<li>묵시적 형 변환 / 명시적 형 변환<h4 id="묵시적-형-변환">묵시적 형 변환</h4>
+</li>
+</ul>
+</li>
+<li>자료형이 자동으로 변환</li>
+<li><strong>자바스크립트 엔진이 나누기 연산을 실행하기 위해 문자열을 숫자형으로 적절하게 변환</strong><pre><code class="language-js">let num1 = '15';
+let num2 = 5;
+</code></pre>
+</li>
+</ul>
+<p>console.log(num1 / num2); // 3</p>
+<pre><code>
+#### 명시적 형 변환
+- 사칙연산 중 곱하기, 나누기, 빼기 연산을 수행할 때에는 문자형을 숫자형으로 변환하지만, 더하기 연산을 하는 경우 숫자를 문자형으로 자동변환함
+- num2에 할당된 숫자 5가 문자열 5로 형변환 되어 결과적으로 155가 출력됨
+```js
+let num1 = '15';
+let num2 = 5;
+
+console.log(num1 + num2); // 155</code></pre><ul>
+<li>그렇다면 20이 출력되려면?<ul>
+<li><code>parseInt()</code> 사용: 문자열을 숫자로 변환해 줌 (js 내장함수)</li>
+</ul>
+</li>
+<li><strong>자바스크립트 내장함수를 사용해 자료형을 의도적으로 변환 (명시적 형 변환)</strong><pre><code class="language-js">let num1 = '15';
+let num2 = 5;
+</code></pre>
+</li>
+</ul>
+<p>console.log(parseInt(num1) + num2); // 20</p>
+<pre><code>- 유연한 처리가 가능하지만,
+- 변수의 자료형을 일관성있게 유지하기 어렵고, 잘못 사용하는 경우 에러 발생 주의
+
+# 04. 연산자
+- 연산자: 프로그래밍 언어에서 특정 연산을 할 수 있게 도와주는 기호
+  - 사칙연산
+  - 비교 연산
+  - 문자형 데이터 연결
+
+- 연산자의 종류
+![](https://velog.velcdn.com/images/heresue/post/93919cf1-dedf-446b-856e-6528ecdc6e26/image.png)
+
+## 1) 산술 연산자 (+, -, *, /, %)
+### % : 나머지 연산자
+```js
+let num1 = 10;
+let num2 = 5;
+
+console.log(num1 % 2); // 0
+console.log(num2 % 2); // 1</code></pre><h2 id="2-증감-연산자">2) 증감 연산자</h2>
+<ul>
+<li>후위연산: 특정 변수의 값에 1을 더하거나 빼기 바로 <strong>직전의 값</strong> 출력</li>
+<li>전위연산: 특정 변수의 값에 1을 더하거나 뺀 <strong>결과 값</strong>을 출력<pre><code class="language-js">let num1 = 10;
+</code></pre>
+</li>
+</ul>
+<p>// 증가
+console.log(num1++); // 10 : 후위연산
+console.log(num1) // 11
+console.log(++num1); // 12 : 전위연산</p>
+<p>// 감소
+console.log(num1--); // 10 : 후위연산
+console.log(num1) // 9
+console.log(--num1); // 8 : 전위연산</p>
+<pre><code>
+## 3) 대입 연산자
+- 변수에 특정 값을 대입하는 역할
+- 변수에 값을 할당하거나 연산 결과를 변수에 저장할 때 사용
+```js
+let num = 10;
+num = num + 5;
+
+console.log(num);</code></pre><h3 id="복합-대입-연산자">복합 대입 연산자</h3>
+<ul>
+<li>산술 연산자와 대입 연산자가 결합된 연산자
+<img alt="" src="https://velog.velcdn.com/images/heresue/post/0dce50fc-5e73-4292-893b-3f3747e27d0c/image.png" /></li>
+</ul>
+<h2 id="4-비교-연산자">4) 비교 연산자</h2>
+<h3 id="1-일치--">(1) 일치 (<code>===</code>, <code>==</code>)</h3>
+<ul>
+<li><code>===</code>: 값 + 자료형까지 비교</li>
+<li><code>==</code>: 값이 일치하는지만 비교<pre><code class="language-js">let num1 = 10;
+let num2 = '10';
+</code></pre>
+</li>
+</ul>
+<p>console.log(num1 === num2); // false
+console.log(num1 == num2); // true</p>
+<pre><code>
+### (2) 불일치 (`!==`, `!=`)
+`!==`: 값 + 자료형까지 비교
+`!=`: 값만 비교
+```js
+let num1 = 10;
+let num2 = '10';
+
+console.log(num1 !== num2); // true
+console.log(num1 != num2); // false</code></pre><h3 id="3-대소-비교-연산자----">(3) 대소 비교 연산자 (&lt;, &gt;, &lt;=, &gt;=)</h3>
+<h2 id="5-연결-연산자-">5) 연결 연산자 (+)</h2>
+<ul>
+<li><code>+</code> 기호가 문자열과 함께 사용하면 연결 연산자로 작동<pre><code class="language-js">let price = 10000;
+console.log(&quot;가격: &quot; + price + &quot;원&quot;); // 가격: 10000원</code></pre>
+</li>
+</ul>
+<h2 id="6-논리-연산자-not-or-and">6) 논리 연산자 (NOT, OR, AND)</h2>
+<h3 id="1-not-">(1) NOT (!)</h3>
+<p>false -&gt; true, true -&gt; false</p>
+<pre><code class="language-js">let isClicked = true;
+let isOpened = false;
+
+console.log(!isClicked); // false
+console.log(!isOpened); // true</code></pre>
+<h3 id="2-or-">(2) OR (||)</h3>
+<p>양 옆의 값이 하나라도 true라면 true를 반환</p>
+<h3 id="3-and-">(3) AND (&amp;&amp;)</h3>
+<p>양 옆의 값이 모두 true라면 true를 반환하고, 하나라도 false가 존재하면 false 반환</p>
+<h2 id="7-null-병합-연산자-">7) null 병합 연산자 (??)</h2>
+<p><code>A ?? B</code></p>
+<ul>
+<li>왼쪽 값(A)이 <code>null</code>이거나 <code>undifined</code>일 경우 오른쪽 값(B)을 반환하고,
+아니라면 왼쪽 값(A)을 반환함</li>
+<li>주로 변수에 기본값을 할당하고 싶을 때 사용<pre><code class="language-js">let num1;
+let num2 = 10;
+</code></pre>
+</li>
+</ul>
+<p>console.log(num1 ?? 20); // 20
+console.log(num2 ?? 20); // 10</p>
+<pre><code>
+### 삼항 연산자
+`A ? B : C`
+```js
+let num = 100;
+let result = num &amp; 2 === 0 ? &quot;짝수&quot; : &quot;홀수&quot;;
+
+console.log(result); // 짝수</code></pre>
